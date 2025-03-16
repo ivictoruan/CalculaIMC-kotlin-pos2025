@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlin.math.pow
 
@@ -52,16 +51,17 @@ class MainActivity : AppCompatActivity() {
         }
     }
     private fun onCalcularBtClick() {
-        if(etPeso.text.toString().isEmpty() || etAltura.text.toString().isEmpty() ){
-            Toast.makeText(this, "Preencha os campos!", Toast.LENGTH_SHORT).show()
+        if(etPeso.text.toString().isEmpty()  ){
+            etPeso.setError("O campo peso deve ser preenchido.")
+            return
+        }
+        if(etAltura.text.toString().isEmpty()  ){
+            etAltura.setError("O campo altura deve ser preenchido.")
             return
         }
 
         val peso :Double = etPeso.text.toString().toDouble()
         val altura :Double = etAltura.text.toString().toDouble()
-
-
-
 
         val imc: Double = (peso / altura.pow(2) * 10000)
 
